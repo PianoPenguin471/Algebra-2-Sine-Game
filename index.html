@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess that sine</title>
+    <style>
+        #calculator {
+            width: 600px; height: 400px;
+        }
+        body {
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Guess that sine!</h1>
+    <script src="https://www.desmos.com/api/v1.7/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+    <div id="calculator"></div>
+    <script>
+        var calculatorElement = document.getElementById('calculator');
+        var calculator = Desmos.GraphingCalculator(calculatorElement, {expressions: false});
+        calculator.setExpression({ id: 'graph1', latex: 'y=\\sin x' });
+    </script>
+</body>
+</html>
