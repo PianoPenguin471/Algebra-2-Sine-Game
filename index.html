@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guess that sine</title>
     <style>
-        #calculator {
-            width: 600px; height: 400px;
+        div#calculator {
+            width: 600px;
+            height: 400px;
+            visibility: visible;
         }
         body {
             align-items: center;
@@ -20,10 +22,32 @@
     <h1>Guess that sine!</h1>
     <script src="https://www.desmos.com/api/v1.7/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
     <div id="calculator"></div>
+    <button onclick="revealGraph()">Reveal graph</button>
     <script>
+        var hintsUsed = false
+        var graphRevealed = false
+        function revealGraph() {
+            hintsUsed = true
+            graphRevealed = true
+            document.getElementById('calculator').style.visibility = 'visible'
+        }
+        function getRandomAmplitude() {
+            amplitude = Math.floor(Math.random() * 10) - 5
+            return amplitude
+        }
+        function getRandomMidline() {
+            midline = Math.floor(Math.random() * 6) - 3
+            return midline
+        }
+        function getRandomPhaseShift() {
+            phaseShifts=['\\pi', '\\frac{\\pi}{2}']
+            phaseShift=phaseShifts[Math.floor(Math.random() * phaseShifts.length)]
+            console.log(phaseShift)
+            return phaseShift
+        }
         var calculatorElement = document.getElementById('calculator');
-        var calculator = Desmos.GraphingCalculator(calculatorElement, {expressions: false});
-        calculator.setExpression({ id: 'graph1', latex: 'y=\\sin x' });
+        var calculator = Desmos.GraphingCalculator(calculatorElement, {expressions: false, xAxisStep: Math.PI/2});
+        calculator.setExpression({ id: 'graph1', latex: `y=${getRandomAmplitude()}\\sin\\left(x-${getRandomPhaseShift()}\\right)+${getRandomMidline()}` });
     </script>
 </body>
 </html>
