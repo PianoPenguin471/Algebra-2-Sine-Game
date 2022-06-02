@@ -9,7 +9,6 @@
         div#calculator {
             width: 600px;
             height: 400px;
-            visibility: visible;
         }
         body {
             align-items: center;
@@ -18,36 +17,34 @@
         }
     </style>
 </head>
-<body>
+<body onload="load()">
     <h1>Guess that sine!</h1>
     <script src="https://www.desmos.com/api/v1.7/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
     <div id="calculator"></div>
-    <button onclick="revealGraph()">Reveal graph</button>
+    <label for="aValue">Value of a:</label><input type="text" name="aValue" id="aInput" placeholder="1"><br>
+    <label for="bValue">Value of b:</label><input type="text" name="bValue" id="bInput" placeholder="1"><br>
+    <label for="hValue">Value of h:</label><input type="text" name="hValue" id="hInput" placeholder="0"><br>
+    <label for="kValue">Value of k:</label><input type="text" name="kValue" id="kInput" placeholder="0"><br>
+    <button onclick="check()">Check</button>
+    <script src="util.js"></script>
     <script>
-        var hintsUsed = false
-        var graphRevealed = false
-        function revealGraph() {
-            hintsUsed = true
-            graphRevealed = true
-            document.getElementById('calculator').style.visibility = 'visible'
+        const aInput = document.getElementById("aInput"), bInput = document.getElementById("bInput"), hInput = document.getElementById("hInput"), kInput = document.getElementById("kInput")
+        var amplitude = getRandomAmplitude()
+        var midline = getRandomMidline()
+        var period = getRandomB()
+        var phaseShift = getRandomPhaseShift()
+
+        function check() {
+            hInput.value.replace("pi", Math.PI)
+            bInput.value.replace("pi", Math.PI)
+            let correct = Math.abs(parseFloat(aInput.value)) == amplitude && parseFloat(bInput.value) == period && parseInt(hInput.value) == phaseShift && parseInt(kInput.value) == midline
+            alert(correct)
         }
-        function getRandomAmplitude() {
-            amplitude = Math.floor(Math.random() * 10) - 5
-            return amplitude
+        function load() {
+            var calculatorElement = document.getElementById('calculator');
+            var calculator = Desmos.GraphingCalculator(calculatorElement, {expressions: false, xAxisStep: Math.PI/2});
+            calculator.setExpression({ id: 'graph1', latex: `y=${amplitude}\\sin\\frac{1}{${period}}\\left(x-${phaseShift}\\right)+${midline}` });
         }
-        function getRandomMidline() {
-            midline = Math.floor(Math.random() * 6) - 3
-            return midline
-        }
-        function getRandomPhaseShift() {
-            phaseShifts=['\\pi', '\\frac{\\pi}{2}']
-            phaseShift=phaseShifts[Math.floor(Math.random() * phaseShifts.length)]
-            console.log(phaseShift)
-            return phaseShift
-        }
-        var calculatorElement = document.getElementById('calculator');
-        var calculator = Desmos.GraphingCalculator(calculatorElement, {expressions: false, xAxisStep: Math.PI/2});
-        calculator.setExpression({ id: 'graph1', latex: `y=${getRandomAmplitude()}\\sin\\left(x-${getRandomPhaseShift()}\\right)+${getRandomMidline()}` });
     </script>
 </body>
 </html>
