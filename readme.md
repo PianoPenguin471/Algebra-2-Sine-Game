@@ -3,11 +3,10 @@
 ### Use the information you have been given to reconstruct the sine wave equation
 
 ## TODO:
-- Randomly generate sine wave
-- Gather user input
-- Allow user to peek at desmos graph
-- Compare user input to existing wave
-- Reward user if successful
+- [x] Randomly generate sine wave
+- [x] Gather user input
+- [x] Compare user input to existing wave
+- [ ] Reward user if successful
 
 ## Nice to have
 - Leaderboard for players who guessed correctly the most
