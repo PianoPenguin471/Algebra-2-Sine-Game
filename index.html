@@ -18,6 +18,7 @@
     </style>
 </head>
 <body onload="load()">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <h1>Guess that sine!</h1>
     <script src="https://www.desmos.com/api/v1.7/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
     <div id="calculator"></div>
@@ -33,17 +34,27 @@
         var midline = getRandomMidline()
         var period = getRandomB()
         var phaseShift = getRandomPhaseShift()
+        var calculatorElement = document.getElementById('calculator')
+        var calculator = Desmos.GraphingCalculator(calculatorElement, {expressions: false, xAxisStep: Math.PI/2})
+
+        function isCorrectPhaseShift(shift) {
+            if (parseFloat(shift) == phaseShift) return true
+            else if ((shift == 'pi/2') && phaseShift == Math.PI/2) return true
+            else if ((shift == 'pi') && phaseShift == Math.PI) return true
+            else return false
+        }
 
         function check() {
-            hInput.value.replace("pi", Math.PI)
+            hInput.value.replace(" ", "")
             bInput.value.replace("pi", Math.PI)
-            let correct = Math.abs(parseFloat(aInput.value)) == amplitude && parseFloat(bInput.value) == period && parseFloat(hInput.value) == phaseShift && parseInt(kInput.value) == midline
+            let correct = Math.abs(parseFloat(aInput.value)) == amplitude && 
+                            parseFloat(bInput.value) == period && 
+                            isCorrectPhaseShift(hInput.value) && 
+                            parseInt(kInput.value) == midline
             alert(correct)
         }
         function load() {
-            var calculatorElement = document.getElementById('calculator');
-            var calculator = Desmos.GraphingCalculator(calculatorElement, {expressions: false, xAxisStep: Math.PI/2});
-            calculator.setExpression({ id: 'graph1', latex: `y=${amplitude}\\sin\\frac{1}{${period}}\\left(x-${phaseShift}\\right)+${midline}` });
+            calculator.setExpression({id: 'graph1', latex: `y=${amplitude}\\sin\\frac{1}{${period}}\\left(x-${phaseShift}\\right)+${midline}` });
         }
     </script>
 </body>
