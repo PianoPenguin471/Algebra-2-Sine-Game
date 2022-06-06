@@ -43,12 +43,19 @@
             else if ((shift == 'pi') && phaseShift == Math.PI) return true
             else return false
         }
+        
+        function isCorrectHorizontalStretch(stretch) {
+            if (parseFloat(stretch) == period) return true
+            else if ((stretch == 'pi/2') && period == Math.PI/2) return true
+            else if ((stretch == 'pi') && period == Math.PI) return true
+            else return false
+        }
 
         function check() {
             hInput.value.replace(" ", "")
             bInput.value.replace("pi", Math.PI)
             let correct = Math.abs(parseFloat(aInput.value)) == amplitude && 
-                            parseFloat(bInput.value) == period && 
+                            isCorrectHorizontalStretch(bInput.value) && 
                             isCorrectPhaseShift(hInput.value) && 
                             parseInt(kInput.value) == midline
             alert(correct)
