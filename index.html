@@ -18,7 +18,6 @@
     </style>
 </head>
 <body onload="load()">
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <h1>Guess that sine!</h1>
     <script src="https://www.desmos.com/api/v1.7/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
     <div id="calculator"></div>
@@ -58,10 +57,24 @@
                             isCorrectHorizontalStretch(bInput.value) && 
                             isCorrectPhaseShift(hInput.value) && 
                             parseInt(kInput.value) == midline
-            alert(correct)
+            if (correct) {
+				username = prompt("You win! Enter your username!")
+				fetch('https://algebra-2-sine-game.pianopenguin471.repl.co/complete?name=' + username).then(
+				  (r) => {
+					r.text().then(
+					  (wins) => {
+						  alert(`You have now completed it ${wins} times`)
+					  	  window.location.href += "leaderboard"
+					  }
+					)
+				  }
+				)
+			} else {
+				alert("Not quite correct. Try again?")
+			}
         }
         function load() {
-            calculator.setExpression({id: 'graph1', latex: `y=${amplitude}\\sin\\frac{1}{${period}}\\left(x-${phaseShift}\\right)+${midline}` });
+            calculator.setExpression({id: 'graph1', latex: `y=${amplitude}\\sin\\frac{1}{${period}}\\left(x-${phaseShift}\\right)+${midline}`});
         }
     </script>
 </body>

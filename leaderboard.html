@@ -11,22 +11,27 @@
         <!-- scores will be inserted by the script here -->
     </div>
     <script>
-        let scores = [
-            SCORES
-        ];
+        let scores = SCORES;
 
         function updateLeaderboardView() {
             let leaderboard = document.getElementById("leaderboard");
             leaderboard.innerHTML = "";
+			var scores_obj = []
+			Object.entries(scores).forEach(([key, value]) => {
+			  console.log(`Key is ${key}, value is ${value}`)
+				scores_obj.push({name:key, score:value})
+			})
 
-            scores.sort(function(a, b){ return b.score - a.score  });
+			console.log(scores_obj)
+			
+            scores_obj.sort(function(a, b){ return b.score - a.score  });
             let elements = []; // we'll need created elements to update colors later on
             // create elements for each player
-            for(let i=0; i<scores.length; i++) {
+            for(let i=0; i<scores_obj.length; i++) {
                 let name = document.createElement("div");
                 let score = document.createElement("div");
                 name.classList.add("score");
-                name.innerText = scores[i].name + ": " + score.innerText + scores[i].score;;
+                name.innerText = scores_obj[i].name + ": " + score.innerText + scores_obj[i].score;;
                 
 
                 let scoreRow = document.createElement("div");

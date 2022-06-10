@@ -10,5 +10,4 @@
 
 ## Nice to have
 - Leaderboard for players who guessed correctly the most
-- Make leaderboard display if hints were used and how many
 - Fiddle with CSS to make it look bearable without dark reader
