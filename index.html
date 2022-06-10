@@ -7,25 +7,42 @@
     <title>Guess that sine</title>
     <style>
         div#calculator {
-            width: 600px;
-            height: 400px;
+            width: 60vh;
+            height: 40vh;
+            padding-bottom: 10px;
         }
-        body {
+        #centerer {
+            display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            text-align: center;
+            background: whitesmoke;
+            border-radius: 2%;
+            width:65vh;
+            height: 65vh;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
     </style>
 </head>
 <body onload="load()">
     <h1>Guess that sine!</h1>
     <script src="https://www.desmos.com/api/v1.7/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
-    <div id="calculator"></div>
-    <label for="aValue">Value of a: </label><input type="text" name="aValue" id="aInput" placeholder="1"><br>
-    <label for="bValue">Value of b: </label> <input type="text" name="bValue" id="bInput" placeholder="1"><br>
-    <label for="hValue">Value of h: </label> <input type="text" name="hValue" id="hInput" placeholder="0"><br>
-    <label for="kValue">Value of k: </label> <input type="text" name="kValue" id="kInput" placeholder="0"><br>
-    <button onclick="check()">Check</button>
+    <div id="centerer">
+        <h3>Use the formula:</h3><img src="https://equatio-api.texthelp.com/svg/f(x)%3Da%5Csin(%5Cfrac%7B1%7D%7Bb%7D(x-h))%2Bk%20" alt="f of x equals a. the sine of open paren 1 over b times open paren x minus h close paren close paren plus k">
+        <div id="calculator"></div>
+        <div id="inputs">
+            <label for="aValue">Value of a: </label><input type="text" name="aValue" id="aInput" placeholder="1"><br>
+            <label for="bValue">Value of b: </label> <input type="text" name="bValue" id="bInput" placeholder="1"><br>
+            <label for="hValue">Value of h: </label> <input type="text" name="hValue" id="hInput" placeholder="0"><br>
+            <label for="kValue">Value of k: </label> <input type="text" name="kValue" id="kInput" placeholder="0"><br>
+            <button onclick="check()">Check</button>
+        </div>
+    </div>
     <script src="util.js"></script>
     <script>
         const aInput = document.getElementById("aInput"), bInput = document.getElementById("bInput"), hInput = document.getElementById("hInput"), kInput = document.getElementById("kInput")
