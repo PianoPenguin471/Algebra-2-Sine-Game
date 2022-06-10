@@ -1,10 +1,14 @@
 from replit import db
 from flask import Flask, request
 import time
+from flask_cors import CORS, cross_origin
+
 app = Flask(__name__)
+CORS(app, support_credentials=True)
 db["last_start"] = time.time()
 
 @app.route('/leaderboard')
+@cross_origin()
 def leaderboard():
 	with open('leaderboard.html', 'r') as f:
 		scores_dict = {}
@@ -13,6 +17,15 @@ def leaderboard():
 				scores_dict[key] = db[key]
 		return f.read().replace("SCORES", str(scores_dict))
 
+@app.route('/scores')
+@cross_origin()
+def get_scores():
+	scores_dict = {}
+	for key in db.keys():
+		if not 'last_start' in key:
+			scores_dict[key] = db[key]
+	return scores_dict
+	
 
 @app.route('/')
 def index():

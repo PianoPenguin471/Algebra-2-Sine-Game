@@ -6,13 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leaderboard</title>
 </head>
-<body>
+<body onload="load()">
     <div id="leaderboard" class="container">
         <!-- scores will be inserted by the script here -->
     </div>
     <script>
-        let scores = SCORES;
+        let scores
 
+		function load() {
+			let xhr = new XMLHttpRequest();
+			
+			xhr.open('GET', 'https://algebra-2-sine-game.pianopenguin471.repl.co/scores');
+			
+			xhr.responseType = 'json';
+			
+			xhr.send();
+			
+			// the response is {"message": "Hello, world!"}
+			xhr.onload = function() {
+			  let responseObj = xhr.response;
+			  scores = responseObj
+			  updateLeaderboardView();
+			};
+		}
+		
         function updateLeaderboardView() {
             let leaderboard = document.getElementById("leaderboard");
             leaderboard.innerHTML = "";
@@ -50,7 +67,7 @@
             }
         }
 
-        updateLeaderboardView();
+        
     </script>
 </body>
 </html>
