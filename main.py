@@ -7,7 +7,7 @@ app = Flask(__name__)
 CORS(app, support_credentials=True)
 db["last_start"] = time.time()
 
-@app.route('/leaderboard')
+@app.route('/leaderboard.html')
 @cross_origin()
 def leaderboard():
 	with open('leaderboard.html', 'r') as f:
