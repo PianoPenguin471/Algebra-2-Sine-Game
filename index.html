@@ -27,6 +27,19 @@
             align-items: center;
             justify-content: center;
         }
+        .checkbutton {
+            background-color: white;
+            color: black;
+            border: 2px solid #4CAF50; /* Green */
+            transform: scale(1.5);
+            margin-top: 10px;
+            border-radius: 20px;
+            transition-duration: 1.5s;;
+        }
+        .checkbutton:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
     </style>
 </head>
 <body onload="load()">
@@ -40,8 +53,8 @@
             <label for="bValue">Value of b: </label> <input type="text" name="bValue" id="bInput" placeholder="1"><br>
             <label for="hValue">Value of h: </label> <input type="text" name="hValue" id="hInput" placeholder="0"><br>
             <label for="kValue">Value of k: </label> <input type="text" name="kValue" id="kInput" placeholder="0"><br>
-            <button onclick="check()">Check</button>
         </div>
+        <button class="checkbutton" onclick="check()">Check</button>
     </div>
     <script src="util.js"></script>
     <script>
