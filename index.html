@@ -89,16 +89,8 @@
                             parseInt(kInput.value) == midline
             if (correct) {
 				username = prompt("You win! Enter your username!")
-				fetch('https://algebra-2-sine-game.pianopenguin471.repl.co/complete?name=' + username).then(
-				  (r) => {
-					r.text().then(
-					  (wins) => {
-						  alert(`You have now completed it ${wins} times`)
-					  	  window.open('https://pianopenguin471.github.io/Algebra-2-Sine-Game/leaderboard.html')
-					  }
-					)
-				  }
-				)
+				fetch('https://algebra-2-sine-game.pianopenguin471.repl.co/complete?name=' + username)
+				window.open('https://pianopenguin471.github.io/Algebra-2-Sine-Game/leaderboard.html')
 			} else {
 				alert("Not quite correct. Try again?")
 			}
