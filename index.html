@@ -9,7 +9,7 @@
         div#calculator {
             width: 60vh;
             height: 40vh;
-            padding-bottom: 5px;
+            padding-bottom: 10px;
         }
         #centerer {
             display: flex;
@@ -19,7 +19,7 @@
             background: whitesmoke;
             border-radius: 2%;
             width:65vh;
-            height: 75vh;
+            height: 65vh;
         }
         body {
             display: flex;
@@ -32,7 +32,7 @@
             color: black;
             border: 2px solid #4CAF50; /* Green */
             transform: scale(1.5);
-            margin-top: 5px;
+            margin-top: 10px;
             border-radius: 20px;
             transition-duration: 1.5s;;
         }
@@ -88,9 +88,8 @@
                             isCorrectPhaseShift(hInput.value) && 
                             parseInt(kInput.value) == midline
             if (correct) {
-				username = prompt("You win! Enter your username!")
-				fetch('https://algebra-2-sine-game.pianopenguin471.repl.co/complete?name=' + username)
-				window.open('https://pianopenguin471.github.io/Algebra-2-Sine-Game/leaderboard.html')
+				alert("Great Job! That is correct.")
+				window.location.reload()
 			} else {
 				alert("Not quite correct. Try again?")
 			}
